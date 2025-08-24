@@ -38,7 +38,7 @@ jobs:
           docker build -t $IMAGE_URI .
           docker push $IMAGE_URI
       
-      - name: Trivy Scan (Don't fail on vulnerabilities)
+      - name: Trivy Scan
         run: |
           IMAGE_URI=806819308050.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
           docker run --rm aquasec/trivy:latest image --exit-code 0 --severity HIGH,CRITICAL $IMAGE_URI
