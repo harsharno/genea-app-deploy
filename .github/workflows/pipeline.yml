@@ -41,7 +41,7 @@ jobs:
       - name: Trivy Scan
         run: |
           IMAGE_URI=806819308050.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
-          docker run --rm aquasec/trivy:latest image --exit-code 0 --severity HIGH,CRITICAL $IMAGE_URI
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --exit-code 0 --severity HIGH,CRITICAL $IMAGE_URI
 
       - name: Prepare new task definition
         run: |
