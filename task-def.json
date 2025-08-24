@@ -1,0 +1,47 @@
+{
+  "family": "microservice",
+  "executionRoleArn": "arn:aws:iam::806819308050:role/ecsTaskExecutionRole-terraform",
+  "taskRoleArn": "arn:aws:iam::806819308050:role/ecsTaskRole-terraform",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "microservice",
+      "image": "806819308050.dkr.ecr.us-west-2.amazonaws.com/microservice:latest",
+      "cpu": 0,
+      "memory": null,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [],
+      "secrets": [
+        {
+          "name": "DB_NAME",
+          "valueFrom": "arn:aws:secretsmanager:us-west-2:806819308050:secret:rds-credential-PDo5Cw:dbname::"
+        },
+        {
+          "name": "DB_HOST",
+          "valueFrom": "arn:aws:secretsmanager:us-west-2:806819308050:secret:rds-credential-PDo5Cw:host::"
+        },
+        {
+          "name": "DB_USERNAME",
+          "valueFrom": "arn:aws:secretsmanager:us-west-2:806819308050:secret:rds-credential-PDo5Cw:username::"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:us-west-2:806819308050:secret:rds-credential-PDo5Cw:password::"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "volumes": [],
+  "placementConstraints": []
+}
+

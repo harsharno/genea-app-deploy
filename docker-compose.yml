@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  microservice:
+    build: .
+    container_name: microservice-app
+    ports:
+      - "3000:8080"   # Map container port 3000 to host
+    environment:
+      PORT: 8080
+      DB_HOST: "my-postgres.cctvd8hknfff.us-west-2.rds.amazonaws.com"       # Replace with your RDS endpoint
+      DB_USER: "postgres"       # Replace with RDS username
+      DB_PASSWORD: "SuperSecretPass123!"   # Replace with RDS password
+      DB_NAME: "postgres"         # Replace with RDS database name
